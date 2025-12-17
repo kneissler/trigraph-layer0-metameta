@@ -1,0 +1,54 @@
+meta:
+  name: metaRelationsSignatures
+  package: layer-0.metameta
+  description: defines signatures of meta-relations (relations about relations or between higher level meta nodes)
+references:
+  type: .metaRelation.
+  metaLevel: .metaRelation.
+  sourceType: .metaRelation.
+  targetType: .metaRelation.
+  class: .types.
+  metaType: .types.
+  metaNType: .types.
+  metaLevelType: .types.
+  metaRelation: .types.
+  metaRelationSignature: .types.
+  metaLevel-3: .metaLevels.
+public:
+private:
+  any-to-anyType: only target type is restricted, it must be of one of the nodes in type hierarchy
+  any-to-metaLevelType: only target type is restricted, it must be a meta level node
+  metaNType-to-metaNType: source and target must be on meta level 3 or above
+  metaRelation-to-metaSignature: from a meta relation to a meta signature
+  metaLevelType-to-metaLevelType: relation between meta levels
+  metaSignature-to-metaType: from a meta signature to a node of type metaType
+relations:
+  #
+  # The types of the meta relation signature nodes (all are of type metaNType)
+  #
+  * -type-> metaNType
+  #
+  # The meta levels of the meta relation siignature nodes (all are in meta level 3)
+  #
+  * -metaLevel-> metaLevel-3
+  #
+  # The definition of signatures
+  #
+  any-to-anyType -targetType-> class
+  any-to-anyType -targetType-> metaType
+  any-to-anyType -targetType-> metaNType
+  any-to-anyType -targetType-> metaLevelType
+  #
+  any-to-metaLevelType -targetType-> metaLevelType
+  #
+  metaNType-to-metaNType -sourceType-> metaNType
+  metaNType-to-metaNType -targetType-> metaNType
+  #
+  metaLevel-to-metaLevel -sourceType-> metaLevelType
+  metaLevel-to-metaLevel -targetType-> metaLevelType
+  #
+  metaRelation-to-metaRelationSignature -sourceType-> metaRelation
+  metaRelation-to-metaRelationSignature -targetType-> metaRelationSignature
+  #
+  metaRelationSignature-to-metaType -sourceType-> metaRelationSignature
+  metaRelationSignature-to-metaType -targetType-> metaType

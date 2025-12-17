@@ -1,0 +1,42 @@
+meta:
+  name: metaRelations
+  package: layer-0.metameta
+  description: defines meta-relations (relations about relations or between higher level meta nodes)
+references:
+  metaNType: .types.
+  metaLevel-3: .metaLevels.
+  any-to-anyType: .metaRelationSignatures.
+  any-to-metaLevelType: .metaRelationSignatures.
+  metaNType-to-metaNType: .metaRelationSignatures.
+  metaRelation-to-metaSignature: .metaRelationSignatures.
+  metaLevelType-to-metaLevelType: .metaRelationSignatures.
+  metaSignature-to-metaType: .metaRelationSignatures.
+public:
+  type: relation that links nodes of one meta level to the next, specifying the "type" of the node
+  metaLevel: relation that specifies the level in the meta hierarchy ("regular" nodes on level 1, meta-nodes on level 2, meta-meta-nodes on level 3, all higher levels are collapsed into a single level N)
+  signature: relation that specifies the signature (of a relation or meta-relation)
+private:
+  nextMetaLevel: relation that links one metaLevel to the next higher one (looping meta level N)
+  sourceType: relation that specifies the type of the source nodes (for a meta-relation signature, not used for relation signatures)
+  targetType: relation that specifies the type of the target nodes (for a meta-relation signature, not used for relation signatures)
+relations:
+  #
+  # The types of the meta relation nodes (all are of type metaNType)
+  #
+  * -type-> metaNType
+  #
+  # The meta levels of the meta relation nodes (all are in meta level 3)
+  #
+  * -metaLevel-> metaLevel-3
+  #
+  # The signatures of the meta relations (some have two signatures on different meta levels)
+  #
+  type -signature-> any-to-anyType
+  metaLevel -signature-> any-to-metaLevelType
+  signature -signature-> metaNType-to-metaNType
+  signature -signature-> metaRelation-to-metaRelationSignature
+  nextMetaLevel -signature-> metaLevelType-to-metaLevelType
+  sourceType -signature-> metaNType-to-metaNType
+  sourceType -signature-> metaRelationSignature-to-metaType
+  targetType -signature-> metaNType-to-metaNType
+  targetType -signature-> metaRelationSignature-to-metaType

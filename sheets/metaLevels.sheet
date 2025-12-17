@@ -1,0 +1,32 @@
+meta:
+  name: metaLevels
+  package: layer-0.metameta
+  description: markers to indicate meta level (via the metaLevel relations)
+references:
+  metaLevelType: .types.
+  type: .metaRelation.
+  metaLevel: .metaRelation.
+  nextMetaLevel: .metaRelation.
+nodes:
+  metaLevel-0: meta level marker for meta level 0
+  metaLevel-1: meta level marker for meta level 1
+  metaLevel-2: meta level marker for meta level 2
+  metaLevel-3: meta level marker for meta level 3
+  metaLevel-N: meta level marker for meta levels 4,5,6,...
+relations:
+  #
+  # The types of the meta relation nodes (all are of type metaLevelType)
+  #
+  * -type-> metaLevelType
+  #
+  # The meta levels of the meta relation nodes (all are in meta level 2)
+  #
+  * -metaLevel-> metaLevel-2
+  #
+  # the hierarchy of meta levels
+  #
+  metaLevel-0 -nextMetaLevel-> metaLevel-1
+  metaLevel-1 -nextMetaLevel-> metaLevel-2
+  metaLevel-2 -nextMetaLevel-> metaLevel-3
+  metaLevel-3 -nextMetaLevel-> metaLevel-N
+  metaLevel-N -nextMetaLevel-> metaLevel-N
