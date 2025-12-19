@@ -1,0 +1,499 @@
+@startuml Trigraph
+skinparam nodesep 20
+skinparam ranksep 30
+
+' White nodes (same as complete-graph nodes)
+' Nodes from types.sheet
+(class) as class
+(mt) as metaType
+(mlt) as metaLevelType
+(mr) as metaRelation
+(mrs) as metaRelationSignature
+(mnt) as metaNType
+
+' Nodes from metaLevels.sheet
+(ml0) as ml0
+(ml1) as ml1
+(ml2) as ml2
+(ml3) as ml3
+(mlN) as mlN
+
+' Nodes from metaRelations.sheet (relation types)
+(type) as type_rel
+(ml) as metaLevel_rel
+(sig) as signature_rel
+(st) as sourceType_rel
+(tt) as targetType_rel
+(nml) as nextMetaLevel_rel
+
+' Nodes from metaRelationSignatures.sheet
+(a2at) as sig1
+(a2mlt) as sig2
+(mnt2mnt) as sig3
+(ml2ml) as sig4
+(mr2mrs) as sig5
+(mrs2mt) as sig6
+
+' Black nodes (one for each relation in complete-graph)
+( ) as r1 #black
+( ) as r2 #black
+( ) as r3 #black
+( ) as r4 #black
+( ) as r5 #black
+( ) as r6 #black
+( ) as r7 #black
+( ) as r8 #black
+( ) as r9 #black
+( ) as r10 #black
+( ) as r11 #black
+( ) as r12 #black
+( ) as r13 #black
+( ) as r14 #black
+( ) as r15 #black
+( ) as r16 #black
+( ) as r17 #black
+( ) as r18 #black
+( ) as r19 #black
+( ) as r20 #black
+( ) as r21 #black
+( ) as r22 #black
+( ) as r23 #black
+( ) as r24 #black
+( ) as r25 #black
+( ) as r26 #black
+( ) as r27 #black
+( ) as r28 #black
+( ) as r29 #black
+( ) as r30 #black
+( ) as r31 #black
+( ) as r32 #black
+( ) as r33 #black
+( ) as r34 #black
+( ) as r35 #black
+( ) as r36 #black
+( ) as r37 #black
+( ) as r38 #black
+( ) as r39 #black
+( ) as r40 #black
+( ) as r41 #black
+( ) as r42 #black
+( ) as r43 #black
+( ) as r44 #black
+( ) as r45 #black
+( ) as r46 #black
+( ) as r47 #black
+( ) as r48 #black
+( ) as r49 #black
+( ) as r50 #black
+( ) as r51 #black
+( ) as r52 #black
+( ) as r53 #black
+( ) as r54 #black
+( ) as r55 #black
+( ) as r56 #black
+( ) as r57 #black
+( ) as r58 #black
+( ) as r59 #black
+( ) as r60 #black
+( ) as r61 #black
+( ) as r62 #black
+( ) as r63 #black
+( ) as r64 #black
+( ) as r65 #black
+( ) as r66 #black
+( ) as r67 #black
+( ) as r68 #black
+( ) as r69 #black
+( ) as r70 #black
+( ) as r71 #black
+( ) as r72 #black
+( ) as r73 #black
+
+' Edges for relations from types.sheet
+' class -type-> metaType
+class -[#red]- r1
+r1 -[#green]- metaType
+r1 -[#blue]- type_rel
+
+' metaType -type-> metaNType
+metaType -[#red]- r2
+r2 -[#green]- metaNType
+r2 -[#blue]- type_rel
+
+' metaLevelType -type-> metaNType
+metaLevelType -[#red]- r3
+r3 -[#green]- metaNType
+r3 -[#blue]- type_rel
+
+' metaRelation -type-> metaNType
+metaRelation -[#red]- r4
+r4 -[#green]- metaNType
+r4 -[#blue]- type_rel
+
+' metaRelationSignature -type-> metaNType
+metaRelationSignature -[#red]- r5
+r5 -[#green]- metaNType
+r5 -[#blue]- type_rel
+
+' metaNType -type-> metaNType
+metaNType -[#red]- r6
+r6 -[#green]- metaNType
+r6 -[#blue]- type_rel
+
+' class -metaLevel-> ml2
+class -[#red]- r7
+r7 -[#green]- ml2
+r7 -[#blue]- metaLevel_rel
+
+' metaType -metaLevel-> ml3
+metaType -[#red]- r8
+r8 -[#green]- ml3
+r8 -[#blue]- metaLevel_rel
+
+' metaLevelType -metaLevel-> ml3
+metaLevelType -[#red]- r9
+r9 -[#green]- ml3
+r9 -[#blue]- metaLevel_rel
+
+' metaRelation -metaLevel-> ml3
+metaRelation -[#red]- r10
+r10 -[#green]- ml3
+r10 -[#blue]- metaLevel_rel
+
+' metaRelationSignature -metaLevel-> ml3
+metaRelationSignature -[#red]- r11
+r11 -[#green]- ml3
+r11 -[#blue]- metaLevel_rel
+
+' metaNType -metaLevel-> mlN
+metaNType -[#red]- r12
+r12 -[#green]- mlN
+r12 -[#blue]- metaLevel_rel
+
+' Edges for relations from metaLevels.sheet
+' ml0 -type-> metaLevelType
+ml0 -[#red]- r13
+r13 -[#green]- metaLevelType
+r13 -[#blue]- type_rel
+
+' ml1 -type-> metaLevelType
+ml1 -[#red]- r14
+r14 -[#green]- metaLevelType
+r14 -[#blue]- type_rel
+
+' ml2 -type-> metaLevelType
+ml2 -[#red]- r15
+r15 -[#green]- metaLevelType
+r15 -[#blue]- type_rel
+
+' ml3 -type-> metaLevelType
+ml3 -[#red]- r16
+r16 -[#green]- metaLevelType
+r16 -[#blue]- type_rel
+
+' mlN -type-> metaLevelType
+mlN -[#red]- r17
+r17 -[#green]- metaLevelType
+r17 -[#blue]- type_rel
+
+' ml0 -metaLevel-> ml2
+ml0 -[#red]- r18
+r18 -[#green]- ml2
+r18 -[#blue]- metaLevel_rel
+
+' ml1 -metaLevel-> ml2
+ml1 -[#red]- r19
+r19 -[#green]- ml2
+r19 -[#blue]- metaLevel_rel
+
+' ml2 -metaLevel-> ml2
+ml2 -[#red]- r20
+r20 -[#green]- ml2
+r20 -[#blue]- metaLevel_rel
+
+' ml3 -metaLevel-> ml2
+ml3 -[#red]- r21
+r21 -[#green]- ml2
+r21 -[#blue]- metaLevel_rel
+
+' mlN -metaLevel-> ml2
+mlN -[#red]- r22
+r22 -[#green]- ml2
+r22 -[#blue]- metaLevel_rel
+
+' ml0 -nextMetaLevel-> ml1
+ml0 -[#red]- r23
+r23 -[#green]- ml1
+r23 -[#blue]- nextMetaLevel_rel
+
+' ml1 -nextMetaLevel-> ml2
+ml1 -[#red]- r24
+r24 -[#green]- ml2
+r24 -[#blue]- nextMetaLevel_rel
+
+' ml2 -nextMetaLevel-> ml3
+ml2 -[#red]- r25
+r25 -[#green]- ml3
+r25 -[#blue]- nextMetaLevel_rel
+
+' ml3 -nextMetaLevel-> mlN
+ml3 -[#red]- r26
+r26 -[#green]- mlN
+r26 -[#blue]- nextMetaLevel_rel
+
+' mlN -nextMetaLevel-> mlN
+mlN -[#red]- r27
+r27 -[#green]- mlN
+r27 -[#blue]- nextMetaLevel_rel
+
+' Edges for relations from metaRelations.sheet
+' type_rel -type-> metaNType
+type_rel -[#red]- r28
+r28 -[#green]- metaNType
+r28 -[#blue]- type_rel
+
+' metaLevel_rel -type-> metaNType
+metaLevel_rel -[#red]- r29
+r29 -[#green]- metaNType
+r29 -[#blue]- type_rel
+
+' signature_rel -type-> metaNType
+signature_rel -[#red]- r30
+r30 -[#green]- metaNType
+r30 -[#blue]- type_rel
+
+' sourceType_rel -type-> metaNType
+sourceType_rel -[#red]- r31
+r31 -[#green]- metaNType
+r31 -[#blue]- type_rel
+
+' targetType_rel -type-> metaNType
+targetType_rel -[#red]- r32
+r32 -[#green]- metaNType
+r32 -[#blue]- type_rel
+
+' nextMetaLevel_rel -type-> metaNType
+nextMetaLevel_rel -[#red]- r33
+r33 -[#green]- metaNType
+r33 -[#blue]- type_rel
+
+' type_rel -metaLevel-> ml3
+type_rel -[#red]- r34
+r34 -[#green]- ml3
+r34 -[#blue]- metaLevel_rel
+
+' metaLevel_rel -metaLevel-> ml3
+metaLevel_rel -[#red]- r35
+r35 -[#green]- ml3
+r35 -[#blue]- metaLevel_rel
+
+' signature_rel -metaLevel-> ml3
+signature_rel -[#red]- r36
+r36 -[#green]- ml3
+r36 -[#blue]- metaLevel_rel
+
+' sourceType_rel -metaLevel-> ml3
+sourceType_rel -[#red]- r37
+r37 -[#green]- ml3
+r37 -[#blue]- metaLevel_rel
+
+' targetType_rel -metaLevel-> ml3
+targetType_rel -[#red]- r38
+r38 -[#green]- ml3
+r38 -[#blue]- metaLevel_rel
+
+' nextMetaLevel_rel -metaLevel-> ml3
+nextMetaLevel_rel -[#red]- r39
+r39 -[#green]- ml3
+r39 -[#blue]- metaLevel_rel
+
+' type_rel -signature-> sig1
+type_rel -[#red]- r40
+r40 -[#green]- sig1
+r40 -[#blue]- signature_rel
+
+' metaLevel_rel -signature-> sig2
+metaLevel_rel -[#red]- r41
+r41 -[#green]- sig2
+r41 -[#blue]- signature_rel
+
+' signature_rel -signature-> sig3
+signature_rel -[#red]- r42
+r42 -[#green]- sig3
+r42 -[#blue]- signature_rel
+
+' signature_rel -signature-> sig5
+signature_rel -[#red]- r43
+r43 -[#green]- sig5
+r43 -[#blue]- signature_rel
+
+' nextMetaLevel_rel -signature-> sig4
+nextMetaLevel_rel -[#red]- r44
+r44 -[#green]- sig4
+r44 -[#blue]- signature_rel
+
+' sourceType_rel -signature-> sig3
+sourceType_rel -[#red]- r45
+r45 -[#green]- sig3
+r45 -[#blue]- signature_rel
+
+' sourceType_rel -signature-> sig6
+sourceType_rel -[#red]- r46
+r46 -[#green]- sig6
+r46 -[#blue]- signature_rel
+
+' targetType_rel -signature-> sig3
+targetType_rel -[#red]- r47
+r47 -[#green]- sig3
+r47 -[#blue]- signature_rel
+
+' targetType_rel -signature-> sig6
+targetType_rel -[#red]- r48
+r48 -[#green]- sig6
+r48 -[#blue]- signature_rel
+
+' Edges for relations from metaRelationSignatures.sheet
+' sig1 -type-> metaNType
+sig1 -[#red]- r49
+r49 -[#green]- metaNType
+r49 -[#blue]- type_rel
+
+' sig2 -type-> metaNType
+sig2 -[#red]- r50
+r50 -[#green]- metaNType
+r50 -[#blue]- type_rel
+
+' sig3 -type-> metaNType
+sig3 -[#red]- r51
+r51 -[#green]- metaNType
+r51 -[#blue]- type_rel
+
+' sig4 -type-> metaNType
+sig4 -[#red]- r52
+r52 -[#green]- metaNType
+r52 -[#blue]- type_rel
+
+' sig5 -type-> metaNType
+sig5 -[#red]- r53
+r53 -[#green]- metaNType
+r53 -[#blue]- type_rel
+
+' sig6 -type-> metaNType
+sig6 -[#red]- r54
+r54 -[#green]- metaNType
+r54 -[#blue]- type_rel
+
+' sig1 -metaLevel-> ml3
+sig1 -[#red]- r55
+r55 -[#green]- ml3
+r55 -[#blue]- metaLevel_rel
+
+' sig2 -metaLevel-> ml3
+sig2 -[#red]- r56
+r56 -[#green]- ml3
+r56 -[#blue]- metaLevel_rel
+
+' sig3 -metaLevel-> ml3
+sig3 -[#red]- r57
+r57 -[#green]- ml3
+r57 -[#blue]- metaLevel_rel
+
+' sig4 -metaLevel-> ml3
+sig4 -[#red]- r58
+r58 -[#green]- ml3
+r58 -[#blue]- metaLevel_rel
+
+' sig5 -metaLevel-> ml3
+sig5 -[#red]- r59
+r59 -[#green]- ml3
+r59 -[#blue]- metaLevel_rel
+
+' sig6 -metaLevel-> ml3
+sig6 -[#red]- r60
+r60 -[#green]- ml3
+r60 -[#blue]- metaLevel_rel
+
+' sig1 -targetType-> class
+sig1 -[#red]- r61
+r61 -[#green]- class
+r61 -[#blue]- targetType_rel
+
+' sig1 -targetType-> metaType
+sig1 -[#red]- r62
+r62 -[#green]- metaType
+r62 -[#blue]- targetType_rel
+
+' sig1 -targetType-> metaNType
+sig1 -[#red]- r63
+r63 -[#green]- metaNType
+r63 -[#blue]- targetType_rel
+
+' sig1 -targetType-> metaLevelType
+sig1 -[#red]- r64
+r64 -[#green]- metaLevelType
+r64 -[#blue]- targetType_rel
+
+' sig2 -targetType-> metaLevelType
+sig2 -[#red]- r65
+r65 -[#green]- metaLevelType
+r65 -[#blue]- targetType_rel
+
+' sig3 -targetType-> metaNType
+sig3 -[#red]- r66
+r66 -[#green]- metaNType
+r66 -[#blue]- targetType_rel
+
+' sig4 -targetType-> metaLevelType
+sig4 -[#red]- r67
+r67 -[#green]- metaLevelType
+r67 -[#blue]- targetType_rel
+
+' sig5 -targetType-> metaRelationSignature
+sig5 -[#red]- r68
+r68 -[#green]- metaRelationSignature
+r68 -[#blue]- targetType_rel
+
+' sig6 -targetType-> metaType
+sig6 -[#red]- r69
+r69 -[#green]- metaType
+r69 -[#blue]- targetType_rel
+
+' sig3 -sourceType-> metaNType
+sig3 -[#red]- r70
+r70 -[#green]- metaNType
+r70 -[#blue]- sourceType_rel
+
+' sig4 -sourceType-> metaLevelType
+sig4 -[#red]- r71
+r71 -[#green]- metaLevelType
+r71 -[#blue]- sourceType_rel
+
+' sig5 -sourceType-> metaRelation
+sig5 -[#red]- r72
+r72 -[#green]- metaRelation
+r72 -[#blue]- sourceType_rel
+
+' sig6 -sourceType-> metaRelationSignature
+sig6 -[#red]- r73
+r73 -[#green]- metaRelationSignature
+r73 -[#blue]- sourceType_rel
+
+' Legend
+legend right
+  |= Node Type |= Color |
+  | Original nodes | White |
+  | Relation nodes | Black |
+  ====
+  |= Edge Type |= Color |= Meaning |
+  | Source edge | <color:#FF0000>Red</color> | From source node to relation |
+  | Target edge | <color:#00FF00>Green</color> | From relation to target node |
+  | Type edge | <color:#0000FF>Blue</color> | From relation to relation type |
+  ====
+  |= Pattern |
+  | For a -t-> b: |
+  | a -red- (relation) |
+  | (relation) -green- b |
+  | (relation) -blue- t |
+endlegend
+
+@enduml

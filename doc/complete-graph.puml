@@ -2,31 +2,33 @@
 skinparam nodesep 15
 skinparam ranksep 20
 
-' Define all nodes as circles with labels inside
+' Define all nodes with shapes based on visibility
 ' Nodes from types.sheet
-(class) as class
-(mt) as metaType
-(mlt) as metaLevelType
-(mr) as metaRelation
-(mrs) as metaRelationSignature
+' public: rectangle, public+1: hexagon, private: circle
+rectangle "class" as class
+hexagon "mt" as metaType
+hexagon "mlt" as metaLevelType
+rectangle "mr" as metaRelation
+rectangle "mrs" as metaRelationSignature
 (mnt) as metaNType
 
 ' Nodes from metaLevels.sheet
-(ml0) as ml0
-(ml1) as ml1
-(ml2) as ml2
+rectangle "ml0" as ml0
+rectangle "ml1" as ml1
+hexagon "ml2" as ml2
 (ml3) as ml3
 (mlN) as mlN
 
 ' Nodes from metaRelations.sheet (colored to match their relation type)
-(<color:white>type</color>) as type_rel #0000FF
-(<color:white>ml</color>) as metaLevel_rel #00AA00
-(<color:white>sig</color>) as signature_rel #FF0000
-(<color:white>st</color>) as sourceType_rel #FF8800
-(<color:white>tt</color>) as targetType_rel #AA00FF
+' public: rectangle, public+1: hexagon, private: circle
+rectangle "<color:white>type</color>" as type_rel #0000FF
+rectangle "<color:white>ml</color>" as metaLevel_rel #00AA00
+rectangle "<color:white>sig</color>" as signature_rel #FF0000
+hexagon "<color:white>st</color>" as sourceType_rel #FF8800
+hexagon "<color:white>tt</color>" as targetType_rel #AA00FF
 (<color:white>nml</color>) as nextMetaLevel_rel #8B4513
 
-' Nodes from metaRelationSignatures.sheet
+' Nodes from metaRelationSignatures.sheet (all private)
 (a2at) as sig1
 (a2mlt) as sig2
 (mnt2mnt) as sig3
@@ -137,6 +139,11 @@ sig6 -[#FF8800]-> metaRelationSignature
 
 ' Legend
 legend right
+  |= Shape |= Visibility |
+  | Rectangle | public |
+  | Hexagon | public+1 |
+  | Circle | private |
+  ====
   |= Relation Type |= Color |
   | type | <color:#0000FF>Blue</color> |
   | metaLevel (ml) | <color:#00AA00>Green</color> |
