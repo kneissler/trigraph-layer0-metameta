@@ -1,0 +1,162 @@
+@startuml Complete MetaMeta Graph
+skinparam nodesep 15
+skinparam ranksep 20
+
+' Define all nodes as circles with labels inside
+' Nodes from types.sheet
+(class) as class
+(mt) as metaType
+(mlt) as metaLevelType
+(mr) as metaRelation
+(mrs) as metaRelationSignature
+(mnt) as metaNType
+
+' Nodes from metaLevels.sheet
+(ml0) as ml0
+(ml1) as ml1
+(ml2) as ml2
+(ml3) as ml3
+(mlN) as mlN
+
+' Nodes from metaRelations.sheet (colored to match their relation type)
+(<color:white>type</color>) as type_rel #0000FF
+(<color:white>ml</color>) as metaLevel_rel #00AA00
+(<color:white>sig</color>) as signature_rel #FF0000
+(<color:white>st</color>) as sourceType_rel #FF8800
+(<color:white>tt</color>) as targetType_rel #AA00FF
+(<color:white>nml</color>) as nextMetaLevel_rel #8B4513
+
+' Nodes from metaRelationSignatures.sheet
+(a2at) as sig1
+(a2mlt) as sig2
+(mnt2mnt) as sig3
+(ml2ml) as sig4
+(mr2mrs) as sig5
+(mrs2mt) as sig6
+
+' Relations from types.sheet
+' -type-> relations (blue)
+class -[#0000FF]-> metaType
+metaType -[#0000FF]-> metaNType
+metaLevelType -[#0000FF]-> metaNType
+metaRelation -[#0000FF]-> metaNType
+metaRelationSignature -[#0000FF]-> metaNType
+metaNType -[#0000FF]-> metaNType
+
+' -metaLevel-> relations (green)
+class -[#00AA00]-> ml2
+metaType -[#00AA00]-> ml3
+metaLevelType -[#00AA00]-> ml3
+metaRelation -[#00AA00]-> ml3
+metaRelationSignature -[#00AA00]-> ml3
+metaNType -[#00AA00]-> mlN
+
+' Relations from metaLevels.sheet
+' -type-> relations (blue)
+ml0 -[#0000FF]-> metaLevelType
+ml1 -[#0000FF]-> metaLevelType
+ml2 -[#0000FF]-> metaLevelType
+ml3 -[#0000FF]-> metaLevelType
+mlN -[#0000FF]-> metaLevelType
+
+' -metaLevel-> relations (green)
+ml0 -[#00AA00]-> ml2
+ml1 -[#00AA00]-> ml2
+ml2 -[#00AA00]-> ml2
+ml3 -[#00AA00]-> ml2
+mlN -[#00AA00]-> ml2
+
+' -nextMetaLevel-> relations (brown)
+ml0 -[#8B4513]-> ml1
+ml1 -[#8B4513]-> ml2
+ml2 -[#8B4513]-> ml3
+ml3 -[#8B4513]-> mlN
+mlN -[#8B4513]-> mlN
+
+' Relations from metaRelations.sheet
+' -type-> relations (blue)
+type_rel -[#0000FF]-> metaNType
+metaLevel_rel -[#0000FF]-> metaNType
+signature_rel -[#0000FF]-> metaNType
+sourceType_rel -[#0000FF]-> metaNType
+targetType_rel -[#0000FF]-> metaNType
+nextMetaLevel_rel -[#0000FF]-> metaNType
+
+' -metaLevel-> relations (green)
+type_rel -[#00AA00]-> ml3
+metaLevel_rel -[#00AA00]-> ml3
+signature_rel -[#00AA00]-> ml3
+sourceType_rel -[#00AA00]-> ml3
+targetType_rel -[#00AA00]-> ml3
+nextMetaLevel_rel -[#00AA00]-> ml3
+
+' -signature-> relations (red)
+type_rel -[#FF0000]-> sig1
+metaLevel_rel -[#FF0000]-> sig2
+signature_rel -[#FF0000]-> sig3
+signature_rel -[#FF0000]-> sig5
+nextMetaLevel_rel -[#FF0000]-> sig4
+sourceType_rel -[#FF0000]-> sig3
+sourceType_rel -[#FF0000]-> sig6
+targetType_rel -[#FF0000]-> sig3
+targetType_rel -[#FF0000]-> sig6
+
+' Relations from metaRelationSignatures.sheet
+' -type-> relations (blue)
+sig1 -[#0000FF]-> metaNType
+sig2 -[#0000FF]-> metaNType
+sig3 -[#0000FF]-> metaNType
+sig4 -[#0000FF]-> metaNType
+sig5 -[#0000FF]-> metaNType
+sig6 -[#0000FF]-> metaNType
+
+' -metaLevel-> relations (green)
+sig1 -[#00AA00]-> ml3
+sig2 -[#00AA00]-> ml3
+sig3 -[#00AA00]-> ml3
+sig4 -[#00AA00]-> ml3
+sig5 -[#00AA00]-> ml3
+sig6 -[#00AA00]-> ml3
+
+' -targetType-> relations (purple)
+sig1 -[#AA00FF]-> class
+sig1 -[#AA00FF]-> metaType
+sig1 -[#AA00FF]-> metaNType
+sig1 -[#AA00FF]-> metaLevelType
+sig2 -[#AA00FF]-> metaLevelType
+sig3 -[#AA00FF]-> metaNType
+sig4 -[#AA00FF]-> metaLevelType
+sig5 -[#AA00FF]-> metaRelationSignature
+sig6 -[#AA00FF]-> metaType
+
+' -sourceType-> relations (orange)
+sig3 -[#FF8800]-> metaNType
+sig4 -[#FF8800]-> metaLevelType
+sig5 -[#FF8800]-> metaRelation
+sig6 -[#FF8800]-> metaRelationSignature
+
+' Legend
+legend right
+  |= Relation Type |= Color |
+  | type | <color:#0000FF>Blue</color> |
+  | metaLevel (ml) | <color:#00AA00>Green</color> |
+  | signature (sig) | <color:#FF0000>Red</color> |
+  | sourceType (st) | <color:#FF8800>Orange</color> |
+  | targetType (tt) | <color:#AA00FF>Purple</color> |
+  | nextMetaLevel (nml) | <color:#8B4513>Brown</color> |
+  ====
+  |= Abbreviation |= Full Name |
+  | mt | metaType |
+  | mlt | metaLevelType |
+  | mr | metaRelation |
+  | mrs | metaRelationSignature |
+  | mnt | metaNType |
+  | a2at | any-to-anyType |
+  | a2mlt | any-to-metaLevelType |
+  | mnt2mnt | metaNType-to-metaNType |
+  | ml2ml | metaLevel-to-metaLevel |
+  | mr2mrs | metaRelation-to-metaRelationSignature |
+  | mrs2mt | metaRelationSignature-to-metaType |
+endlegend
+
+@enduml

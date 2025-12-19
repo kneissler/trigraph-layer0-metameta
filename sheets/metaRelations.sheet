@@ -15,10 +15,11 @@ public:
   type: relation that links nodes of one meta level to the next, specifying the "type" of the node
   metaLevel: relation that specifies the level in the meta hierarchy ("regular" nodes on level 1, meta-nodes on level 2, meta-meta-nodes on level 3, all higher levels are collapsed into a single level N)
   signature: relation that specifies the signature (of a relation or meta-relation)
-private:
-  nextMetaLevel: relation that links one metaLevel to the next higher one (looping meta level N)
+public+1:
   sourceType: relation that specifies the type of the source nodes (for a meta-relation signature, not used for relation signatures)
   targetType: relation that specifies the type of the target nodes (for a meta-relation signature, not used for relation signatures)
+private:
+  nextMetaLevel: relation that links one metaLevel to the next higher one (looping meta level N)
 relations:
   #
   # The types of the meta relation nodes (all are of type metaNType)

@@ -12,10 +12,11 @@ public:
   class: type of nodes (on meta level 1) which represent types, this is type(type(n)) for all nodes of meta level 0, this node is on meta level 2
   metaRelation: type of nodes (on meta level 2) that specify a meta relation, this node is on meta level 3
   metaRelationSignature: type of nodes (on meta level 2) that specify the signature of a meta relation, this node is on meta level 3
-private:
-  metaNType: all meta^N types (with N >= 2) collapsed into one node, this is type(n) for all nodes of meta level >=3
+public+1:
   metaType: type of nodes on meta level 2 which represent types, this is type(type(n)) for all nodes of meta level 1, this node is on meta level 3
   metaLevelType: type of meta level marker nodes
+private:
+  metaNType: all meta^N types (with N >= 2) collapsed into one node, this is type(n) for all nodes of meta level >=3
 relations:
   #
   # hierarchy of types

@@ -14,7 +14,6 @@ references:
   metaRelation: .types.
   metaRelationSignature: .types.
   metaLevel-3: .metaLevels.
-public:
 private:
   any-to-anyType: only target type is restricted, it must be of one of the nodes in type hierarchy
   any-to-metaLevelType: only target type is restricted, it must be a meta level node

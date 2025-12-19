@@ -7,10 +7,15 @@ references:
   type: .metaRelation.
   metaLevel: .metaRelation.
   nextMetaLevel: .metaRelation.
-nodes:
+public:
+  # visible to all layers
   metaLevel-0: meta level marker for meta level 0
   metaLevel-1: meta level marker for meta level 1
+public+1:
+  # visible to layer 1 only
   metaLevel-2: meta level marker for meta level 2
+private:
+  # not visible outside this layer
   metaLevel-3: meta level marker for meta level 3
   metaLevel-N: meta level marker for meta levels 4,5,6,...
 relations:
