@@ -7,8 +7,10 @@ This repository contains the Layer-0 MetaMeta system - a self-describing meta-mo
 ## Quick Links
 
 - **[Sheet Principles Documentation](SHEET_PRINCIPLES.md)** - Comprehensive documentation of the meta-model principles
-- **[Complete Graph Diagram](complete-graph.puml)** - Traditional directed graph visualization
-- **[Trigraph Diagram](trigraph.puml)** - Bipartite hypergraph representation
+- **[Complete Graph Diagram](complete-graph.puml)** - Traditional directed graph visualization (PlantUML)
+- **[Complete Graph Grouped](complete-graph-grouped.svg)** - Complete graph with nodes grouped by sheet (SVG)
+- **[Trigraph Diagram](trigraph.puml)** - Bipartite hypergraph representation (PlantUML)
+- **[MNT Radial Graph](mnt-radial.svg)** - Radial layout centered on metaNType node (SVG)
 
 ## Visualizations
 
@@ -22,6 +24,26 @@ The [complete-graph.puml](complete-graph.puml) file provides a traditional direc
   - Hexagons = public+1 nodes
   - Circles = private nodes
 - **Node coloring**: Relation nodes are colored to match their relation type
+
+### Complete Graph Grouped by Sheet
+
+The [complete-graph-grouped.svg](complete-graph-grouped.svg) provides the same graph structure but with nodes organized into clusters by their source sheet:
+
+- **types.sheet cluster**: class, mt, mlt, mr, mrs, mnt
+- **metaLevels.sheet cluster**: ml0, ml1, ml2, ml3, mlN
+- **metaRelations.sheet cluster**: type, ml, sig, st, tt, nml (colored nodes)
+- **metaRelationSignatures.sheet cluster**: a2at, a2mlt, mnt2mnt, ml2ml, mr2mrs, mrs2mt
+
+This visualization makes it easy to see:
+- Which nodes are defined in which sheet
+- Cross-sheet dependencies and references
+- The modular structure of the meta-model
+
+**Features**:
+- Clustered layout groups related nodes
+- Shape-coded visibility (box=public, hexagon=public+1, ellipse=private)
+- Color-coded edges matching relation types
+- Includes legend for shapes and edge colors
 
 ### Trigraph
 
@@ -46,7 +68,7 @@ where `(r)` is a black relation node representing the hyperedge
 
 #### Trigraph Structure
 
-1. **White Nodes** (32 nodes): All original nodes from complete-graph
+1. **White Nodes** (23 nodes): All original nodes from complete-graph
    - Types: class, mt, mlt, mr, mrs, mnt
    - Meta-levels: ml0, ml1, ml2, ml3, mlN
    - Relations: type, ml, sig, st, tt, nml
@@ -87,6 +109,28 @@ This makes explicit:
 3. **Type Information**: Relation types are explicitly connected
 4. **Analyzability**: Easier to query and analyze using graph algorithms
 5. **Hypergraph Semantics**: Naturally represents n-ary relations (here, ternary)
+
+### Radial Graph Centered on MetaNType
+
+The [mnt-radial.svg](mnt-radial.svg) provides a radial/concentric visualization of the trigraph centered on the `mnt` (metaNType) node:
+
+**Structure**:
+- **Shell 0 (center)**: `mnt` node
+- **Shell 1**: 21 black nodes (relations directly connected to mnt)
+- **Shell 2**: 17 white nodes (nodes connected to shell 1)
+- **Shell 3**: 52 black nodes (relations connected to shell 2)
+- **Shell 4**: 5 white nodes (outermost nodes)
+
+**Features**:
+- Nodes arranged in equidistant circular shells
+- Node ordering optimized to minimize edge crossings
+- Color-coded edges (red/green/blue for source/target/type)
+- Shows connectivity patterns radiating from central node
+
+This visualization is particularly useful for:
+- Understanding the centrality of `metaNType` in the meta-model
+- Seeing the distance of other nodes from the core type
+- Analyzing the bipartite structure (alternating black/white shells)
 
 ## Table of Contents
 

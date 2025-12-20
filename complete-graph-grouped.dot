@@ -1,0 +1,161 @@
+digraph complete_graph_grouped {
+  rankdir=TB;
+  compound=true;
+  newrank=true;
+  splines=true;
+  overlap=false;
+  
+  subgraph cluster_0 {
+    label="types.sheet";
+    style=filled;
+    color=lightgrey;
+    node [style=filled];
+    
+    class [label="class", shape=box, fillcolor=white];
+    metaType [label="mt", shape=hexagon, fillcolor=white];
+    metaLevelType [label="mlt", shape=hexagon, fillcolor=white];
+    metaRelation [label="mr", shape=box, fillcolor=white];
+    metaRelationSignature [label="mrs", shape=box, fillcolor=white];
+    metaNType [label="mnt", shape=ellipse, fillcolor=white];
+  }
+  
+  subgraph cluster_1 {
+    label="metaLevels.sheet";
+    style=filled;
+    color=lightgrey;
+    node [style=filled];
+    
+    ml0 [label="ml0", shape=box, fillcolor=white];
+    ml1 [label="ml1", shape=box, fillcolor=white];
+    ml2 [label="ml2", shape=hexagon, fillcolor=white];
+    ml3 [label="ml3", shape=ellipse, fillcolor=white];
+    mlN [label="mlN", shape=ellipse, fillcolor=white];
+  }
+  
+  subgraph cluster_2 {
+    label="metaRelations.sheet";
+    style=filled;
+    color=lightgrey;
+    node [style=filled];
+    
+    type_rel [label="type", shape=box, fillcolor="#0000FF", fontcolor=white];
+    metaLevel_rel [label="ml", shape=box, fillcolor="#00AA00", fontcolor=white];
+    signature_rel [label="sig", shape=box, fillcolor="#FF0000", fontcolor=white];
+    sourceType_rel [label="st", shape=hexagon, fillcolor="#FF8800", fontcolor=white];
+    targetType_rel [label="tt", shape=hexagon, fillcolor="#AA00FF", fontcolor=white];
+    nextMetaLevel_rel [label="nml", shape=ellipse, fillcolor="#8B4513", fontcolor=white];
+  }
+  
+  subgraph cluster_3 {
+    label="metaRelationSignatures.sheet";
+    style=filled;
+    color=lightgrey;
+    node [style=filled];
+    
+    sig1 [label="a2at", shape=ellipse, fillcolor=white];
+    sig2 [label="a2mlt", shape=ellipse, fillcolor=white];
+    sig3 [label="mnt2mnt", shape=ellipse, fillcolor=white];
+    sig4 [label="ml2ml", shape=ellipse, fillcolor=white];
+    sig5 [label="mr2mrs", shape=ellipse, fillcolor=white];
+    sig6 [label="mrs2mt", shape=ellipse, fillcolor=white];
+  }
+  
+  // Edges
+  class -> metaType [color="#0000FF"];
+  metaType -> metaNType [color="#0000FF"];
+  metaLevelType -> metaNType [color="#0000FF"];
+  metaRelation -> metaNType [color="#0000FF"];
+  metaRelationSignature -> metaNType [color="#0000FF"];
+  metaNType -> metaNType [color="#0000FF"];
+  class -> ml2 [color="#00AA00"];
+  metaType -> ml3 [color="#00AA00"];
+  metaLevelType -> ml3 [color="#00AA00"];
+  metaRelation -> ml3 [color="#00AA00"];
+  metaRelationSignature -> ml3 [color="#00AA00"];
+  metaNType -> mlN [color="#00AA00"];
+  ml0 -> metaLevelType [color="#0000FF"];
+  ml1 -> metaLevelType [color="#0000FF"];
+  ml2 -> metaLevelType [color="#0000FF"];
+  ml3 -> metaLevelType [color="#0000FF"];
+  mlN -> metaLevelType [color="#0000FF"];
+  ml0 -> ml2 [color="#00AA00"];
+  ml1 -> ml2 [color="#00AA00"];
+  ml2 -> ml2 [color="#00AA00"];
+  ml3 -> ml2 [color="#00AA00"];
+  mlN -> ml2 [color="#00AA00"];
+  ml0 -> ml1 [color="#8B4513"];
+  ml1 -> ml2 [color="#8B4513"];
+  ml2 -> ml3 [color="#8B4513"];
+  ml3 -> mlN [color="#8B4513"];
+  mlN -> mlN [color="#8B4513"];
+  type_rel -> metaNType [color="#0000FF"];
+  metaLevel_rel -> metaNType [color="#0000FF"];
+  signature_rel -> metaNType [color="#0000FF"];
+  sourceType_rel -> metaNType [color="#0000FF"];
+  targetType_rel -> metaNType [color="#0000FF"];
+  nextMetaLevel_rel -> metaNType [color="#0000FF"];
+  type_rel -> ml3 [color="#00AA00"];
+  metaLevel_rel -> ml3 [color="#00AA00"];
+  signature_rel -> ml3 [color="#00AA00"];
+  sourceType_rel -> ml3 [color="#00AA00"];
+  targetType_rel -> ml3 [color="#00AA00"];
+  nextMetaLevel_rel -> ml3 [color="#00AA00"];
+  type_rel -> sig1 [color="#FF0000"];
+  metaLevel_rel -> sig2 [color="#FF0000"];
+  signature_rel -> sig3 [color="#FF0000"];
+  signature_rel -> sig5 [color="#FF0000"];
+  nextMetaLevel_rel -> sig4 [color="#FF0000"];
+  sourceType_rel -> sig3 [color="#FF0000"];
+  sourceType_rel -> sig6 [color="#FF0000"];
+  targetType_rel -> sig3 [color="#FF0000"];
+  targetType_rel -> sig6 [color="#FF0000"];
+  sig1 -> metaNType [color="#0000FF"];
+  sig2 -> metaNType [color="#0000FF"];
+  sig3 -> metaNType [color="#0000FF"];
+  sig4 -> metaNType [color="#0000FF"];
+  sig5 -> metaNType [color="#0000FF"];
+  sig6 -> metaNType [color="#0000FF"];
+  sig1 -> ml3 [color="#00AA00"];
+  sig2 -> ml3 [color="#00AA00"];
+  sig3 -> ml3 [color="#00AA00"];
+  sig4 -> ml3 [color="#00AA00"];
+  sig5 -> ml3 [color="#00AA00"];
+  sig6 -> ml3 [color="#00AA00"];
+  sig1 -> class [color="#AA00FF"];
+  sig1 -> metaType [color="#AA00FF"];
+  sig1 -> metaNType [color="#AA00FF"];
+  sig1 -> metaLevelType [color="#AA00FF"];
+  sig2 -> metaLevelType [color="#AA00FF"];
+  sig3 -> metaNType [color="#AA00FF"];
+  sig4 -> metaLevelType [color="#AA00FF"];
+  sig5 -> metaRelationSignature [color="#AA00FF"];
+  sig6 -> metaType [color="#AA00FF"];
+  sig3 -> metaNType [color="#FF8800"];
+  sig4 -> metaLevelType [color="#FF8800"];
+  sig5 -> metaRelation [color="#FF8800"];
+  sig6 -> metaRelationSignature [color="#FF8800"];
+  
+  // Legend
+  subgraph cluster_legend {
+    label="Legend";
+    style=filled;
+    color=lightyellow;
+    
+    legend_shape [label="Shapes:", shape=plaintext];
+    legend_public [label="public", shape=box, fillcolor=white, style=filled];
+    legend_public1 [label="public+1", shape=hexagon, fillcolor=white, style=filled];
+    legend_private [label="private", shape=ellipse, fillcolor=white, style=filled];
+    
+    legend_edges [label="Edge Colors:", shape=plaintext];
+    legend_type [label="type", shape=plaintext, fontcolor="#0000FF"];
+    legend_metaLevel [label="metaLevel", shape=plaintext, fontcolor="#00AA00"];
+    legend_signature [label="signature", shape=plaintext, fontcolor="#FF0000"];
+    legend_sourceType [label="sourceType", shape=plaintext, fontcolor="#FF8800"];
+    legend_targetType [label="targetType", shape=plaintext, fontcolor="#AA00FF"];
+    legend_nextMetaLevel [label="nextMetaLevel", shape=plaintext, fontcolor="#8B4513"];
+    
+    {rank=same; legend_shape; legend_public; legend_public1; legend_private;}
+    {rank=same; legend_edges; legend_type; legend_metaLevel; legend_signature;}
+    {rank=same; legend_sourceType; legend_targetType; legend_nextMetaLevel;}
+  }
+}

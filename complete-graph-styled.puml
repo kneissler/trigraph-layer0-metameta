@@ -1,0 +1,139 @@
+@startuml Complete MetaMeta Graph (Styled)
+skinparam nodesep 15
+skinparam ranksep 20
+
+' Define all nodes with:
+' - Background color based on their type (pale colors)
+' - Border style based on their metaLevel
+' - Relation nodes have bold colored text (not filled background)
+
+' Nodes from types.sheet
+' class: type=metaType, metaLevel=ml2
+rectangle "class" as class #FFFFCC;line.dotted
+
+' metaType: type=metaNType, metaLevel=ml3 (TYPE NODE - bold colored text)
+hexagon "<b><color:#000000>mt</color></b>" as metaType #E6F0FF
+
+' metaLevelType: type=metaNType, metaLevel=ml3 (TYPE NODE - bold colored text)
+hexagon "<b><color:#000000>mlt</color></b>" as metaLevelType #E6F0FF
+
+' metaRelation: type=metaNType, metaLevel=ml3
+rectangle "mr" as metaRelation #E6F0FF
+
+' metaRelationSignature: type=metaNType, metaLevel=ml3
+rectangle "mrs" as metaRelationSignature #E6F0FF
+
+' metaNType: type=metaNType, metaLevel=mlN (TYPE NODE - bold colored text)
+(<b><color:#000000>mnt</color></b>) as metaNType #E6F0FF;line.dashed
+
+' Nodes from metaLevels.sheet
+' All have type=metaLevelType, metaLevel=ml2
+rectangle "ml0" as ml0 #E6FFE6;line.dotted
+rectangle "ml1" as ml1 #E6FFE6;line.dotted
+hexagon "ml2" as ml2 #E6FFE6;line.dotted
+(ml3) as ml3 #E6FFE6;line.dotted
+(mlN) as mlN #E6FFE6;line.dotted
+
+' Nodes from metaRelations.sheet (relation type nodes)
+' All have type=metaNType, metaLevel=ml3
+' Bold text with relation color, background=metaNType color (very light blue)
+rectangle "<b><i><color:#000000>type</color></i></b>" as type_rel #E6F0FF
+rectangle "<b><i><color:#000000>ml</color></i></b>" as metaLevel_rel #E6F0FF
+rectangle "<b><i><color:#FF0000>sig</color></i></b>" as signature_rel #E6F0FF
+hexagon "<b><i><color:#0000FF>st</color></i></b>" as sourceType_rel #E6F0FF
+hexagon "<b><i><color:#AA00FF>tt</color></i></b>" as targetType_rel #E6F0FF
+(<b><i><color:#00AA00>nml</color></i></b>) as nextMetaLevel_rel #E6F0FF
+
+' Nodes from metaRelationSignatures.sheet (all private)
+' All have type=metaNType, metaLevel=ml3
+(a2at) as sig1 #E6F0FF
+(a2mlt) as sig2 #E6F0FF
+(mnt2mnt) as sig3 #E6F0FF
+(ml2ml) as sig4 #E6F0FF
+(mr2mrs) as sig5 #E6F0FF
+(mrs2mt) as sig6 #E6F0FF
+
+' Relations - EXCLUDING type and metaLevel relations
+' Only showing: signature, sourceType, targetType, nextMetaLevel
+
+' -nextMetaLevel-> relations (green)
+ml0 -[#00AA00]-> ml1
+ml1 -[#00AA00]-> ml2
+ml2 -[#00AA00]-> ml3
+ml3 -[#00AA00]-> mlN
+mlN -[#00AA00]-> mlN
+
+' -signature-> relations (red)
+type_rel -[#FF0000]-> sig1
+metaLevel_rel -[#FF0000]-> sig2
+signature_rel -[#FF0000]-> sig3
+signature_rel -[#FF0000]-> sig5
+nextMetaLevel_rel -[#FF0000]-> sig4
+sourceType_rel -[#FF0000]-> sig3
+sourceType_rel -[#FF0000]-> sig6
+targetType_rel -[#FF0000]-> sig3
+targetType_rel -[#FF0000]-> sig6
+
+' -targetType-> relations (purple)
+sig1 -[#AA00FF]-> class
+sig1 -[#AA00FF]-> metaType
+sig1 -[#AA00FF]-> metaNType
+sig1 -[#AA00FF]-> metaLevelType
+sig2 -[#AA00FF]-> metaLevelType
+sig3 -[#AA00FF]-> metaNType
+sig4 -[#AA00FF]-> metaLevelType
+sig5 -[#AA00FF]-> metaRelationSignature
+sig6 -[#AA00FF]-> metaType
+
+' -sourceType-> relations (blue)
+sig3 -[#0000FF]-> metaNType
+sig4 -[#0000FF]-> metaLevelType
+sig5 -[#0000FF]-> metaRelation
+sig6 -[#0000FF]-> metaRelationSignature
+
+' Legend
+legend right
+  |= Shape |= Visibility |
+  | Rectangle | public |
+  | Hexagon | public+1 |
+  | Circle | private |
+  ====
+  |= Type Node |= Background Color |
+  | <b><color:#000000>mnt (metaNType)</color></b> | <back:#E6F0FF>Very Light Blue</back> |
+  | <b><color:#000000>mt (metaType)</color></b> | <back:#FFFFCC>Pale Yellow</back> |
+  | <b><color:#000000>mlt (metaLevelType)</color></b> | <back:#E6FFE6>Pale Green</back> |
+  ====
+  |= Border Style |= Meta Level |
+  | Dotted | metaLevel-2 |
+  | Solid | metaLevel-3 |
+  | Dashed | metaLevel-N |
+  ====
+  |= Edge Color |= Relation Type |
+  | <color:#FF0000>Red</color> | signature |
+  | <color:#0000FF>Blue</color> | sourceType |
+  | <color:#AA00FF>Purple</color> | targetType |
+  | <color:#00AA00>Green</color> | nextMetaLevel |
+  ====
+  |= Relations |
+  | <b><i><color:#000000>Black</color></i></b> | type |
+  | <b><i><color:#000000>Black</color></i></b> | metaLevel |
+  | <b><i><color:#FF0000>Red</color></i></b> | signature |
+  | <b><i><color:#0000FF>Blue</color></i></b> | sourceType |
+  | <b><i><color:#AA00FF>Purple</color></i></b> | targetType |
+  | <b><i><color:#00AA00>Green</color></i></b> | nextMetaLevel |
+  ====
+  |= Abbreviation |= Full Name |
+  | mt | metaType |
+  | mlt | metaLevelType |
+  | mr | metaRelation |
+  | mrs | metaRelationSignature |
+  | mnt | metaNType |
+  | a2at | any-to-anyType |
+  | a2mlt | any-to-metaLevelType |
+  | mnt2mnt | metaNType-to-metaNType |
+  | ml2ml | metaLevel-to-metaLevel |
+  | mr2mrs | metaRelation-to-metaRelationSignature |
+  | mrs2mt | metaRelationSignature-to-metaType |
+endlegend
+
+@enduml
