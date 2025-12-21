@@ -39,7 +39,7 @@ hexagon "ml2" as ml2 #E6FFE6;line.dotted
 ' Bold text with relation color, background=metaNType color (very light blue)
 rectangle "<b><i><color:#000000>type</color></i></b>" as type_rel #E6F0FF
 rectangle "<b><i><color:#000000>ml</color></i></b>" as metaLevel_rel #E6F0FF
-rectangle "<b><i><color:#FF0000>sig</color></i></b>" as signature_rel #E6F0FF
+rectangle "<b><i><color:#FF8800>sig</color></i></b>" as signature_rel #E6F0FF
 hexagon "<b><i><color:#0000FF>st</color></i></b>" as sourceType_rel #E6F0FF
 hexagon "<b><i><color:#AA00FF>tt</color></i></b>" as targetType_rel #E6F0FF
 (<b><i><color:#00AA00>nml</color></i></b>) as nextMetaLevel_rel #E6F0FF
@@ -63,16 +63,16 @@ ml2 -[#00AA00]-> ml3
 ml3 -[#00AA00]-> mlN
 mlN -[#00AA00]-> mlN
 
-' -signature-> relations (red)
-type_rel -[#FF0000]-> sig1
-metaLevel_rel -[#FF0000]-> sig2
-signature_rel -[#FF0000]-> sig3
-signature_rel -[#FF0000]-> sig5
-nextMetaLevel_rel -[#FF0000]-> sig4
-sourceType_rel -[#FF0000]-> sig3
-sourceType_rel -[#FF0000]-> sig6
-targetType_rel -[#FF0000]-> sig3
-targetType_rel -[#FF0000]-> sig6
+' -signature-> relations (orange)
+type_rel -[#FF8800]-> sig1
+metaLevel_rel -[#FF8800]-> sig2
+signature_rel -[#FF8800]-> sig3
+signature_rel -[#FF8800]-> sig5
+nextMetaLevel_rel -[#FF8800]-> sig4
+sourceType_rel -[#FF8800]-> sig3
+sourceType_rel -[#FF8800]-> sig6
+targetType_rel -[#FF8800]-> sig3
+targetType_rel -[#FF8800]-> sig6
 
 ' -targetType-> relations (purple)
 sig1 -[#AA00FF]-> class
@@ -109,7 +109,7 @@ legend right
   | Dashed | metaLevel-N |
   ====
   |= Edge Color |= Relation Type |
-  | <color:#FF0000>Red</color> | signature |
+  | <color:#FF8800>Orange</color> | signature |
   | <color:#0000FF>Blue</color> | sourceType |
   | <color:#AA00FF>Purple</color> | targetType |
   | <color:#00AA00>Green</color> | nextMetaLevel |
@@ -117,7 +117,7 @@ legend right
   |= Relations |
   | <b><i><color:#000000>Black</color></i></b> | type |
   | <b><i><color:#000000>Black</color></i></b> | metaLevel |
-  | <b><i><color:#FF0000>Red</color></i></b> | signature |
+  | <b><i><color:#FF8800>Orange</color></i></b> | signature |
   | <b><i><color:#0000FF>Blue</color></i></b> | sourceType |
   | <b><i><color:#AA00FF>Purple</color></i></b> | targetType |
   | <b><i><color:#00AA00>Green</color></i></b> | nextMetaLevel |
