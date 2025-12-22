@@ -1,5 +1,5 @@
 meta:
-  name: metameta
+  name: metametameta
   description: The core package of the meta-hierarchy, constitutes layer 0, contains definition of all meta^N nodes (with N >= 3) plus the "class" node (a meta-meta-node), defines type-relation, metaLevel-relation and metaSignatures
   layer: 0
   version: 1.0.0

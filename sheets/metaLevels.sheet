@@ -1,6 +1,6 @@
 meta:
   name: metaLevels
-  package: layer-0.metameta
+  package: layer-0.metametameta
   description: markers to indicate meta level (via the metaLevel relations)
 references:
   metaLevelType: .types.

@@ -1,6 +1,6 @@
 meta:
   name: metaRelations
-  package: layer-0.metameta
+  package: layer-0.metametameta
   description: defines meta-relations (relations about relations or between higher level meta nodes)
 references:
   metaNType: .types.

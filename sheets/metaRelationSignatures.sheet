@@ -1,6 +1,6 @@
 meta:
   name: metaRelationsSignatures
-  package: layer-0.metameta
+  package: layer-0.metametameta
   description: defines signatures of meta-relations (relations about relations or between higher level meta nodes)
 references:
   type: .metaRelation.
