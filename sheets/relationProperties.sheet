@@ -1,0 +1,23 @@
+meta:
+  name: relationProperties
+  package: layer-0.metametameta
+  description: defines relation properties that can be attached to relations signatures
+references:
+  type: .metaRelations.
+  metaLevel: .metaRelations.
+  relationProperty: .types.
+  metaLevel-2: .metaLevels.
+public:
+  mandatory: relation property indicating an outgoing relation is mandatory (at source nodes allowed by signature)
+  unique: relation property indicating a relation enforces uniqueness (no two relations of this type with same source and target may exist)
+  implicit: relation property indicating a relation is implicit (the relation is not defined explicitely, it is derived by some rules from other relations)
+  transient: relation property indicating a relation is transient (the relation is not persisted, it may be recreated however in loadding process if the relation is also implicit, otherwise the relation will be lost on closing the applciation)
+relations:
+  #
+  # The types of the relation property nodes (all are of type relationProperty)
+  #
+  * -type-> relationProperty
+  #
+  # The meta levels of the relation property nodes (all are in meta level 2)
+  #
+  * -metaLevel-> metaLevel-2

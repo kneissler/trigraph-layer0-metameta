@@ -4,6 +4,7 @@ meta:
   description: defines meta-relations (relations about relations or between higher level meta nodes)
 references:
   metaNType: .types.
+  relationProperty: .types.
   metaLevel-3: .metaLevels.
   any-to-anyType: .metaRelationSignatures.
   any-to-metaLevelType: .metaRelationSignatures.
@@ -11,10 +12,12 @@ references:
   metaRelation-to-metaRelationSignature: .metaRelationSignatures.
   metaLevelType-to-metaLevelType: .metaRelationSignatures.
   metaRelationSignature-to-metaType: .metaRelationSignatures.
+  relationSignature-to-relationProperty: .metaRelationSignatures.
 public:
   type: relation that links nodes of one meta level to the next, specifying the "type" of the node
   metaLevel: relation that specifies the level in the meta hierarchy ("regular" nodes on level 1, meta-nodes on level 2, meta-meta-nodes on level 3, all higher levels are collapsed into a single level N)
   signature: relation that specifies the signature (of a relation or meta-relation)
+  relationPropertyRelation: relation that links a relation property to a relation signature
 public+1:
   sourceType: relation that specifies the type of the source nodes (for a meta-relation signature, not used for relation signatures)
   targetType: relation that specifies the type of the target nodes (for a meta-relation signature, not used for relation signatures)
@@ -37,6 +40,7 @@ relations:
   signature -signature-> metaNType-to-metaNType
   signature -signature-> metaRelation-to-metaRelationSignature
   nextMetaLevel -signature-> metaLevelType-to-metaLevelType
+  relationPropertyRelation -signature-> relationSignature-to-relationProperty
   sourceType -signature-> metaNType-to-metaNType
   sourceType -signature-> metaRelationSignature-to-metaType
   targetType -signature-> metaNType-to-metaNType

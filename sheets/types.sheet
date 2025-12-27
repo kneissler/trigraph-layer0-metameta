@@ -10,11 +10,14 @@ metaLevel: .metaRelations.
   metalevel-N: .metaLevels.
 public:
   class: type of nodes (on meta level 1) which represent types, this is type(type(n)) for all nodes of meta level 0, this node is on meta level 2
+  relation: type of nodes (on meta level 1) which represent relations, this node is on meta level 2
+  relationSignature: type of nodes (on meta level 1) which specify the signature of a relation, this node is on meta level 2
   metaRelation: type of nodes (on meta level 2) that specify a meta relation, this node is on meta level 3
   metaRelationSignature: type of nodes (on meta level 2) that specify the signature of a meta relation, this node is on meta level 3
 public+1:
   metaType: type of nodes on meta level 2 which represent types, this is type(type(n)) for all nodes of meta level 1, this node is on meta level 3
   metaLevelType: type of meta level marker nodes
+  relationProperty: type of nodes (on meta level 2) that specify properties of relations and meta-relations, this node is on meta level 3
 private:
   metaNType: all meta^N types (with N >= 2) collapsed into one node, this is type(n) for all nodes of meta level >=3
 relations:
@@ -22,17 +25,23 @@ relations:
   # hierarchy of types
   #
   class -type-> metaType
+  relation -type-> metaType
+  relationSignature -type-> metaType
   metaType -type-> metaNType
   metaLevelType -type-> metaNType
   metaRelation -type-> metaNType
   metaRelationSignature -type-> metaNType
+  relationProperty -type-> metaNType
   metaNType -type-> metaNType
   #
   # the meta levels definitions
   #
   class -metaLevel-> metaLevel-2
+  relation -metaLevel-> metaLevel-2
+  relationSignature -metaLevel-> metaLevel-2
   metaType -metaLevel-> metaLevel-3
   metaLevelType -metaLevel-> metaLevel-3
   metaRelation -metaLevel-> metaLevel-3
   metaRelationSignature -metaLevel-> metaLevel-3
+  relationProperty -metaLevel-> metaLevel-3
   metaNType -metaLevel-> metaLevel-N

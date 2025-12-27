@@ -13,6 +13,9 @@ references:
   metaLevelType: .types.
   metaRelation: .types.
   metaRelationSignature: .types.
+  relation: .types.
+  relationSignature: .types.
+  relationProperty: .types.
   metaLevel-3: .metaLevels.
 private:
   any-to-anyType: only target type is restricted, it must be of one of the nodes in type hierarchy
@@ -21,6 +24,8 @@ private:
   metaRelation-to-metaRelationSignature: from a meta relation to a meta relation signature
   metaLevelType-to-metaLevelType: relation between meta levels
   metaRelationSignature-to-metaType: from a meta relation signature to a node of type metaType
+  relationSignature-to-relationProperty: from a relation signature to a relation property
+  relation-to-relationSignature: from a relation to a relation signature
 relations:
   #
   # The types of the meta relation signature nodes (all are of type metaNType)
@@ -51,3 +56,9 @@ relations:
   #
   metaRelationSignature-to-metaType -sourceType-> metaRelationSignature
   metaRelationSignature-to-metaType -targetType-> metaType
+  #
+  relationSignature-to-relationProperty -sourceType-> relationSignature
+  relationSignature-to-relationProperty -targetType-> relationProperty
+  #
+  relation-to-relationSignature -sourceType-> relation
+  relation-to-relationSignature -targetType-> relationSignature
