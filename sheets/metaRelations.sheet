@@ -8,9 +8,9 @@ references:
   any-to-anyType: .metaRelationSignatures.
   any-to-metaLevelType: .metaRelationSignatures.
   metaNType-to-metaNType: .metaRelationSignatures.
-  metaRelation-to-metaSignature: .metaRelationSignatures.
+  metaRelation-to-metaRelationSignature: .metaRelationSignatures.
   metaLevelType-to-metaLevelType: .metaRelationSignatures.
-  metaSignature-to-metaType: .metaRelationSignatures.
+  metaRelationSignature-to-metaType: .metaRelationSignatures.
 public:
   type: relation that links nodes of one meta level to the next, specifying the "type" of the node
   metaLevel: relation that specifies the level in the meta hierarchy ("regular" nodes on level 1, meta-nodes on level 2, meta-meta-nodes on level 3, all higher levels are collapsed into a single level N)

@@ -1,5 +1,5 @@
 meta:
-  name: metaRelationsSignatures
+  name: metaRelationSignatures
   package: layer-0.metametameta
   description: defines signatures of meta-relations (relations about relations or between higher level meta nodes)
 references:
@@ -18,9 +18,9 @@ private:
   any-to-anyType: only target type is restricted, it must be of one of the nodes in type hierarchy
   any-to-metaLevelType: only target type is restricted, it must be a meta level node
   metaNType-to-metaNType: source and target must be on meta level 3 or above
-  metaRelation-to-metaSignature: from a meta relation to a meta signature
+  metaRelation-to-metaRelationSignature: from a meta relation to a meta relation signature
   metaLevelType-to-metaLevelType: relation between meta levels
-  metaSignature-to-metaType: from a meta signature to a node of type metaType
+  metaRelationSignature-to-metaType: from a meta relation signature to a node of type metaType
 relations:
   #
   # The types of the meta relation signature nodes (all are of type metaNType)
@@ -43,8 +43,8 @@ relations:
   metaNType-to-metaNType -sourceType-> metaNType
   metaNType-to-metaNType -targetType-> metaNType
   #
-  metaLevel-to-metaLevel -sourceType-> metaLevelType
-  metaLevel-to-metaLevel -targetType-> metaLevelType
+  metaLevelType-to-metaLevelType -sourceType-> metaLevelType
+  metaLevelType-to-metaLevelType -targetType-> metaLevelType
   #
   metaRelation-to-metaRelationSignature -sourceType-> metaRelation
   metaRelation-to-metaRelationSignature -targetType-> metaRelationSignature
